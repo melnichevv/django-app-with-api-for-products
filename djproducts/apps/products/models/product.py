@@ -1,5 +1,6 @@
 from django.db import models
-from django.db.models import Count, F, Q, query
+from django.db.models import F, Q, Sum, query
+from django.db.models.functions import Coalesce
 from djproducts.apps.core.models.base import AbstractBaseModel
 from djproducts.apps.orders.models.order import OrderStatus
 
@@ -7,8 +8,8 @@ from djproducts.apps.orders.models.order import OrderStatus
 class ProductQuerySet(query.QuerySet):
     def annotate_current_quantity(self):
         return self.annotate(
-            in_progress_orders_amount=Count(
-                "order_products__amount", filter=Q(order_products__order__status=OrderStatus.IN_PROGRESS)
+            in_progress_orders_amount=Coalesce(
+                Sum("order_products__amount", filter=Q(order_products__order__status=OrderStatus.IN_PROGRESS)), 0
             )
         ).annotate(current_quantity=F("quantity_in_stock") - F("in_progress_orders_amount"))
 

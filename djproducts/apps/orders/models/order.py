@@ -1,11 +1,16 @@
+from decimal import Decimal
+
 from django.db import models
-from django.db.models import query
+from django.db.models import F, Sum, query
 from django.utils.translation import gettext_lazy as _lazy
 from djproducts.apps.core.models.base import AbstractBaseModel
 from djproducts.apps.users.models import User
 
 
 class OrderQuerySet(query.QuerySet):
+    def annotate_total_price(self):
+        return self.annotate(total_price=Sum(F("order_products__product__price") * F("order_products__amount")))
+
     def in_progress(self):
         return self.filter(status=OrderStatus.IN_PROGRESS)
 
@@ -20,6 +25,9 @@ class OrderQuerySet(query.QuerySet):
 
 
 class OrderManager(models.Manager):
+    def annotate_total_price(self):
+        return self.get_queryset().annotate_total_price()
+
     def in_progress(self):
         return self.get_queryset().in_progress()
 
@@ -29,8 +37,8 @@ class OrderManager(models.Manager):
     def completed(self):
         return self.get_queryset().completed()
 
-    def for_user(self):
-        return self.get_queryset().for_user()
+    def for_user(self, user: User):
+        return self.get_queryset().for_user(user=user)
 
 
 class OrderStatus(models.TextChoices):
@@ -44,6 +52,8 @@ class Order(AbstractBaseModel):
     user = models.ForeignKey("users.User", related_name="orders", on_delete=models.CASCADE)
     products = models.ManyToManyField("products.Product", through="orders.OrderProducts", related_name="orders")
 
+    objects = OrderManager.from_queryset(OrderQuerySet)()
+
     def cancel(self):
         self.status = OrderStatus.CANCELLED
         self.save()
@@ -51,6 +61,14 @@ class Order(AbstractBaseModel):
     def complete(self):
         self.status = OrderStatus.COMPLETED
         self.save()
+
+    def get_total_price(self) -> Decimal:
+        if hasattr(self, "total_price"):
+            return self.total_price
+
+        return self.order_products.annotate(total_price_per_product=F("product__price") * F("amount")).aggregate(
+            Sum("total_price_per_product")
+        )["total_price_per_product__sum"]
 
 
 class OrderProductsQuerySet(query.QuerySet):
@@ -87,3 +105,6 @@ class OrderProducts(AbstractBaseModel):
     amount = models.PositiveIntegerField(default=0)
 
     objects = OrderProductsManager.from_queryset(OrderProductsQuerySet)()
+
+    def get_total_price(self) -> Decimal:
+        return self.product.price * self.amount

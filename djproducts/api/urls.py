@@ -7,6 +7,8 @@ app_name = "api"
 
 urlpatterns = [
     path("auth/", include("djproducts.api.auth.urls")),
+    path("orders/", include("djproducts.api.orders.urls")),
+    path("products/", include("djproducts.api.products.urls")),
     path("users/", include("djproducts.api.users.urls")),
 ]
 

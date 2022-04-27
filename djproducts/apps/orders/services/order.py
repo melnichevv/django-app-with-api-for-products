@@ -1,3 +1,4 @@
+from django.db import transaction
 from djproducts.apps.orders.models import Order
 from djproducts.apps.orders.models.order import OrderProducts, OrderStatus
 from djproducts.apps.products.exceptions import ProductOutOfStockException
@@ -20,11 +21,12 @@ def cancel_order(order: Order) -> None:
     order.cancel()
 
 
+@transaction.atomic
 def complete_order(order: Order) -> None:
     """Complete order and decrease quantity_in_stock for each Product in Order."""
     order.complete()
     products = []
-    for order_product in order.order_products:  # type: OrderProducts
+    for order_product in order.order_products.all():  # type: OrderProducts
         product: Product = order_product.product
         product.quantity_in_stock -= order_product.amount
         products.append(product)
@@ -39,3 +41,18 @@ def add_product_to_order(order: Order, product: Product) -> None:
     order_products, _ = OrderProducts.objects.get_or_create(order=order, product=product)
     order_products.amount += 1
     order_products.save(update_fields=["amount", "updated_at"])
+
+
+def remove_product_from_order(order: Order, product: Product) -> None:
+    """Remove one instance of product from order."""
+    try:
+        order_products = OrderProducts.objects.get(order=order, product=product)
+    except OrderProducts.DoesNotExist:
+        # this is expected so simply return
+        return
+
+    order_products.amount -= 1
+    if order_products.amount == 0:
+        order_products.delete()
+    else:
+        order_products.save(update_fields=["amount", "updated_at"])
