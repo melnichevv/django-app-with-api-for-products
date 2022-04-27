@@ -1,10 +1,10 @@
-# Species Sequestration tool back-end application
+# Django products API application
 
 # Quickstart
 
 # Prerequisites
 
-1. Python 3.7+
+1. Python 3.9+
 2. Docker
 
 # API Setup
@@ -32,23 +32,20 @@ poetry config virtualenvs.in-project true
 Then install all the packages
 
 ```shell
+cd api
 poetry install
 ```
 
 Setting up environment variables:
 
-1. Create .env file root directory
+1. Create .env file in directory
 2. Fill it out in conformance with `.env.example`
 
 Before start:
 
 ```shell
-source .venv/bin/activate
-python manage.py migrate
-python manage.py loaddata djproducts/fixtures/users.json
-```
-
-How to start:
-```shell
-python manage.py runserver 0.0.0.0:8000
+docker-compose build
+docker-compose up
+docker-compose run django python manage.py migrate
+docker-compose run django python manage.py loaddata djproducts/fixtures/users.json djproducts/fixtures/products.json
 ```
