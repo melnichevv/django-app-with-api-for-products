@@ -1,0 +1,59 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$j8099D0S41eDpNLqw2eEuL$FPWEBe6UF674heTarHE6keXCxnE4Y23bxuLEl+gS86I=",
+      "last_login": null,
+      "is_superuser": true,
+      "first_name": "admim",
+      "last_name": "djproducts",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-04-27T13:31:32.395Z",
+      "email": "admin@djproducts.com",
+      "secret_key": "24$kp_&6a=)jx((basmk7@$$ji7^n)=pz*y2y7l=d0)+=$wfpw",
+      "groups": [],
+      "user_permissions": [],
+      "user_type": "ADMIN"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$j8099D0S41eDpNLqw2eEuL$FPWEBe6UF674heTarHE6keXCxnE4Y23bxuLEl+gS86I=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Jon",
+      "last_name": "Snow",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-04-27T13:31:33.395Z",
+      "email": "jon@westeros.com",
+      "secret_key": "-qy0@hrk-o&putkuyf#f#x@t3*q$9nb6#v+2%@j_hcpf!q4x$@",
+      "groups": [],
+      "user_permissions": [],
+      "user_type": "CUSTOMER"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$j8099D0S41eDpNLqw2eEuL$FPWEBe6UF674heTarHE6keXCxnE4Y23bxuLEl+gS86I=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "Danny",
+      "last_name": "Daenerys",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-04-27T13:31:34.395Z",
+      "email": "dd@westeros.com",
+      "secret_key": "h8804n6uf-l8obou*)u!bji5yb+5(*0o0046b%rwa#sj8)dcas",
+      "groups": [],
+      "user_permissions": [],
+      "user_type": "CUSTOMER"
+    }
+  }
+]

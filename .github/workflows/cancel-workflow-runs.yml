@@ -1,0 +1,19 @@
+name: Cancel previous runs
+
+on:
+  pull_request:
+    types: [synchronize, reopened]
+
+jobs:
+  cancel:
+    name: Cancel redundant runs
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Cancel workflow"
+        uses: potiuk/cancel-workflow-runs@master
+        with:
+          cancelMode: allDuplicates
+          cancelFutureDuplicates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflowFileName: pr-checks-and-tests.yml

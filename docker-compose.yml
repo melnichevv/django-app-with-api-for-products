@@ -1,0 +1,23 @@
+version: "3"
+services:
+    postgres:
+      image: postgres:14.2
+      ports:
+        - "5434:5432"
+      environment:
+        - POSTGRES_DB=djproducts
+        - POSTGRES_USER=djproducts
+        - POSTGRES_PASSWORD=djproducts
+      volumes:
+        - ./docker/postgres:/data
+
+    django:
+      build: .
+      container_name: djproducts-app-dev
+      ports:
+        - "8000:8000"
+      command: python -Wd manage.py runserver 0.0.0.0:8000
+      depends_on:
+        - postgres
+      env_file:
+        - ./.env
