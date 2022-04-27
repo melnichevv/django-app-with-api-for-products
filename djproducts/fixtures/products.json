@@ -1,0 +1,123 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.080Z",
+      "updated_at": "2022-04-27T19:59:09.080Z",
+      "name": "Apple",
+      "price": "1.50",
+      "quantity_in_stock": 10
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.086Z",
+      "updated_at": "2022-04-27T19:59:09.086Z",
+      "name": "Pear",
+      "price": "2.25",
+      "quantity_in_stock": 5
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.087Z",
+      "updated_at": "2022-04-27T19:59:09.087Z",
+      "name": "Banana",
+      "price": "0.80",
+      "quantity_in_stock": 20
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.088Z",
+      "updated_at": "2022-04-27T19:59:09.088Z",
+      "name": "Lemon",
+      "price": "1.00",
+      "quantity_in_stock": 17
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.090Z",
+      "updated_at": "2022-04-27T19:59:09.090Z",
+      "name": "Melon",
+      "price": "4.00",
+      "quantity_in_stock": 3
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.091Z",
+      "updated_at": "2022-04-27T19:59:09.091Z",
+      "name": "Watermelon",
+      "price": "2.75",
+      "quantity_in_stock": 7
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.095Z",
+      "updated_at": "2022-04-27T19:59:09.095Z",
+      "name": "Coconut",
+      "price": "3.10",
+      "quantity_in_stock": 5
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.097Z",
+      "updated_at": "2022-04-27T19:59:09.097Z",
+      "name": "Mango",
+      "price": "5.00",
+      "quantity_in_stock": 4
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.098Z",
+      "updated_at": "2022-04-27T19:59:09.098Z",
+      "name": "Peach",
+      "price": "1.20",
+      "quantity_in_stock": 8
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.100Z",
+      "updated_at": "2022-04-27T19:59:09.100Z",
+      "name": "Pineapple",
+      "price": "8.00",
+      "quantity_in_stock": 3
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "created_at": "2022-04-27T19:59:09.102Z",
+      "updated_at": "2022-04-27T19:59:09.102Z",
+      "name": "Papaya",
+      "price": "4.40",
+      "quantity_in_stock": 4
+    }
+}
+]
