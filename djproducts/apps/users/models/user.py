@@ -4,6 +4,7 @@ from django.contrib.auth.models import UserManager as BaseUserManager
 from django.core.management.utils import get_random_secret_key
 from django.db import models
 from django.utils.translation import gettext_lazy as _lazy
+from djproducts.apps.core.models.base import AbstractBaseModel
 
 
 class UserManager(BaseUserManager):
@@ -44,7 +45,7 @@ class UserType(models.TextChoices):
     CUSTOMER = "CUSTOMER", _lazy("Customer")
 
 
-class User(AbstractUser):
+class User(AbstractBaseModel, AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

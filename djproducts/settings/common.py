@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "rest_framework_jwt.blacklist",
     "drf_yasg",  # https://drf-yasg.readthedocs.io/en/stable/readme.html
     # Local
+    "djproducts.apps.orders",
+    "djproducts.apps.products",
     "djproducts.apps.users",
 ]
 

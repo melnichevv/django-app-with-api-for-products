@@ -9,4 +9,3 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 STATIC_URL = "/static/"
 ASSETS_URL = "/static/"
 MEDIA_URL = "/media/"
-
