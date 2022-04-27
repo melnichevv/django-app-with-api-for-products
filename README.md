@@ -9,43 +9,18 @@
 
 # API Setup
 
-You need to have poetry package installed first
-
-### osx / linux / bashonwindows
-
-```shell
-curl -sSL https://install.python-poetry.org | python3 -
-```
-
-### Windows Powershell
-
-```shell
-(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
-```
-
-Then you can make poetry to install virtual envs into projects' folders, if needed to you:
-
-```shell
-poetry config virtualenvs.in-project true
-```
-
-Then install all the packages
-
-```shell
-cd api
-poetry install
-```
-
-Setting up environment variables:
-
-1. Create .env file in directory
-2. Fill it out in conformance with `.env.example`
-
-Before start:
-
 ```shell
 docker-compose build
 docker-compose up
 docker-compose run django python manage.py migrate
 docker-compose run django python manage.py loaddata djproducts/fixtures/users.json djproducts/fixtures/products.json
 ```
+
+Default password for all users is `12asdf34`
+
+## TODO
+
+- Add [django-fsm](https://github.com/viewflow/django-fsm) package for easier tracking order status change;
+- Add tests for some basic functionality using `pytest`;
+- Add [factory-boy](https://factoryboy.readthedocs.io/en/stable/) for easier products generation
+- Play with django-silk and profile API requests in order to speed up API and get rid of excess DB queries (if any :D).
